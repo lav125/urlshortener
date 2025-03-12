@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      body{
+        background-color: bisque;
+      }
+      h1{
+        color: black;
+        text-align: center;
+        margin-top: 20px;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      .ll{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .main{
+        width:200px;
+        padding: 8px;
+        margin-top: 10px;
+      }
+      .label{
+        font-size: 15px;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      button{
+        width:98px;
+        padding: 8px;
+        background-color: red;
+        color:white;
+      }
+      p{
+        text-align: center;
+        color: rgb(139, 14, 14);
+        font-size: 22px;
+        font-weight: 100;
+      }
+      .table{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 5px;
+      }
+
+    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Homepage</title>
+  </head>
+  <body>
+    <h1>URL SHORTENER</h1>
+    <div class="ll">
+      <form method="POST" action="/url">
+        <!-- <label class="label">Enter your original url:</label><br /> -->
+        <input class="main" type="text" name="url" placeholder="https://example.com" />
+        <button type="submit">Generate url</button>
+      </form>
+    </div>
+    <div class="table">
+      <% if (locals.urls) { %>
+      <table border="1">
+        <thead>
+          <th>S.NO</th>
+          <th>SHORTID</th>
+          <th>REDIRECTURL</th>
+          <th>CLICKS</th>
+        </thead>
+        <tbody>
+          <% urls.forEach((url,index) => { %>
+            <tr>
+          <td><%= index+1 %></td>
+          <td><%= url.shortId %></td>
+          <td><%= url.redirectURL %></td>
+          <td><%= url.visitHistory.length %></td>
+          <% }) %>
+        </tr>
+        </tbody>
+      </table>
+
+      <% } %>
+    </div>
+    <%  if (locals.id) { %>
+      <p>URL Generated:https://example.com--<%- id %></p>
+      <% } %>
+  </body>
+</html>

@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const secret = "#lav$harma12";
+const secret = process.env.SECRET;
 
 function Setuser(user) {
   return jwt.sign(

@@ -10,20 +10,20 @@ async function generateNewShortURL(req, res) {
   //   redirectURL: body.url,
   //   visitHistory: [],
   // });
-  return res.render("home")
-
+  return res.render("home");
 }
 
-async function generateurl(req,res) {
-   const body = req.body;
-   if (!body.url) return res.json({ error: "url is required" });
-   const shortID = shortid();
-   await URL.create({
-  shortId: shortID,
+async function generateurl(req, res) {
+  const body = req.body;
+  if (!body.url) return res.json({ error: "url is required" });
+  const shortID = shortid();
+  await URL.create({
+    shortId: shortID,
     redirectURL: body.url,
     visitHistory: [],
-   });
-   return res.redirect("/")
+    createdBy:req.user._id,
+  });
+  return res.redirect("/");
 }
 
 async function Getanalyticsdetail(req, res) {

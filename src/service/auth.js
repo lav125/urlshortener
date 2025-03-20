@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const secret = process.env.SECRET;
+const secret = process.env.SECRET_KEY;
 
 function Setuser(user) {
   return jwt.sign(
@@ -8,7 +8,8 @@ function Setuser(user) {
       email: user.email,
       role:user.role,
     },
-    secret
+    secret,
+    {expiresIn:"1m"}
   );
 }
 
